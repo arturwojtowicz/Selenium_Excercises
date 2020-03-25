@@ -20,11 +20,11 @@ example_user = {
     'confirmPassword': user['password']
 }
 
-def test_user_wants_to_register(newtours_on_firefox):
-    test_move_to_registration_form(newtours_on_firefox)
-    registration_page = RegistrationPage(newtours_on_firefox)
+def test_user_wants_to_register(firefox_driver):
+    test_move_to_registration_form(firefox_driver)
+    registration_page = RegistrationPage(firefox_driver)
     registration_page.insert_register_credentials(example_user)
     registration_page.click_register()
     assert not registration_page.title_changed()
-    assert newtours_on_firefox.find_element_by_xpath(f"//*[contains(text(), 'Dear {example_user['firstName']} {example_user['lastName']}')]")
-    assert newtours_on_firefox.find_element_by_xpath("//*[contains(text(), 'Thank you for registering.')]")
+    assert firefox_driver.find_element_by_xpath(f"//*[contains(text(), 'Dear {example_user['firstName']} {example_user['lastName']}')]")
+    assert firefox_driver.find_element_by_xpath("//*[contains(text(), 'Thank you for registering.')]")
