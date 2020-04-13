@@ -54,6 +54,13 @@ def click_register(registration_page):
 
 # Then Steps
 
+@then('user should be moved to another site')
+def verify_title_and_url(registration_page):
+    registration_page.wait_for_page_load_until_url_change()
+    assert registration_page.is_url_changed()
+    assert not registration_page.is_title_changed()
+
+
 @then(parsers.parse('verify is message "{message}" exists on page'))
 def verify_message(firefox_driver, message):
     assert firefox_driver.find_element_by_xpath(f"//*[contains(text(), '{message}')]")

@@ -42,7 +42,8 @@ def move_to_registration_form(main_page):
 
 #Then Steps
 
-@then(parsers.parse('user should be moved to another site with title name starts with: "{titlename}"'))
-def verify_title(main_page, titlename):
-    assert main_page.title_changed()
-    assert titlename in main_page._title
+@then('user should be moved to another site')
+def verify_title_and_url(main_page):
+    main_page.wait_for_page_load_until_url_change()
+    assert main_page.is_url_changed()
+    assert main_page.is_title_changed()

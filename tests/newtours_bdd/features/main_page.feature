@@ -7,8 +7,8 @@ Feature: User operates in main page
   Scenario: User log in
     When user insert login: "example.jan.kowalski@email.email" and password: "example_password"
     And user clicks sign-in
-    Then user should be moved to another site with title name starts with: "Find a Flight"
+    Then user should be moved to another site
 
   Scenario: User wants to move to registration form by clicking "Register here"
     When user clicks "Register here" sign
-    Then user should be moved to another site with title name starts with: "Register"
+    Then user should be moved to another site

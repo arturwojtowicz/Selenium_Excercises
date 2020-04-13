@@ -1,3 +1,5 @@
+from typing import NoReturn
+
 from libs.driver_utils import SelectByValue, SendKeys
 
 from .main_page import MainPage
@@ -20,9 +22,9 @@ class RegistrationPage(MainPage):
         'confirmPassword': SendKeys('confirmPassword'),
     }
 
-    def insert_register_credentials(self, user: dict):
+    def insert_register_credentials(self, user: dict) -> NoReturn:
         for key, value in user.items():
             self.registration_layout[key](self.driver, value)
 
-    def click_register(self):
+    def click_register(self) -> NoReturn:
         self.driver.find_element_by_name("register").click()
